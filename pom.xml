@@ -22,11 +22,36 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
+<!--                <configuration>-->
+<!--                    <testFailureIgnore>false</testFailureIgnore>-->
+<!--                    <includes>-->
+<!--                        <include>**/*.java</include>-->
+<!--                    </includes>-->
+<!--                </configuration>-->
                 <configuration>
-                    <testFailureIgnore>false</testFailureIgnore>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
+                    <!--          忽略测试错误，继续编译         -->
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <suiteXmlFiles>
+                        <!--               待添加的testng.xml              -->
+                        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
+                        <dependency>
+                            <groupId>io.qameta.allure</groupId>
+                            <artifactId>allure-junit4</artifactId>
+                            <version>2.7.0</version>
+                            <scope>test</scope>
+                        </dependency>
+
+                    </suiteXmlFiles>
+                    <!--生成allure-result的目录-->
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>./target/allure-results</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>
