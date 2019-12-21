@@ -31,9 +31,6 @@
                 <configuration>
                     <!--          忽略测试错误，继续编译         -->
                     <testFailureIgnore>true</testFailureIgnore>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
                     <suiteXmlFiles>
                         <!--               待添加的testng.xml              -->
                         <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
